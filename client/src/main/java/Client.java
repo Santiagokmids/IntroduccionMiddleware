@@ -5,6 +5,7 @@ import com.zeroc.Ice.Util;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.net.Inet4Address;
 import java.util.UUID;
@@ -39,14 +40,15 @@ public class Client {
                             printer.printString(hostname + " says: " + "Hello World");
 
                         }else{
-                            File file = new File("/printer/File");
-
-                            if(args[2].equals(file.getName())){
-                                FileReader fr = new FileReader(file);
+                            try{
+                                FileReader fr = new FileReader("./"+args[1]);
                                 BufferedReader br = new BufferedReader(fr);
                                 String guidInFIle = br.readLine();
 
-                                System.out.println(guidInFIle+" uy");
+                                System.out.println(guidInFIle);
+
+                            }catch (FileNotFoundException fne){
+                                System.out.println("El archivo no fue encontrado");
                             }
                         }
 
