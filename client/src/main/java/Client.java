@@ -34,23 +34,32 @@ public class Client {
 
                     //System.out.println("\u001B[32m"+guid); --> Coloca el texto verde
                     if(number > 1){
-
+                        String guid="";
                         if(args.length == 1){
-                            UUID guid = UUID.randomUUID();
+                            guid = UUID.randomUUID().toString();
                             printer.printString(hostname + " says: " + "Hello World");
+
+                            System.out.println(guid);
 
                         }else{
                             try{
                                 FileReader fr = new FileReader("./"+args[1]);
                                 BufferedReader br = new BufferedReader(fr);
-                                String guidInFIle = br.readLine();
+                                guid = br.readLine();
 
-                                System.out.println(guidInFIle);
+                                System.out.println(guid);
+
 
                             }catch (FileNotFoundException fne){
                                 System.out.println("El archivo no fue encontrado");
                             }
                         }
+
+
+                        if(!guid.isEmpty()){
+
+                        }
+
 
                     } else if (number == 0) {
                         System.out.println("El numero debe ser mayor a 1");
