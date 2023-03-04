@@ -1,3 +1,5 @@
+import com.zeroc.Ice.Current;
+
 public class PrinterI implements Demo.Printer
 {
     public void printString(String s, com.zeroc.Ice.Current current)
@@ -5,7 +7,8 @@ public class PrinterI implements Demo.Printer
         System.out.println(s);
     }
 
-    public void validateGUID(String guid, int n, com.zeroc.Ice.Current current){
+    @Override
+    public void validateGUID(String guid, int n, Current current) {
         if(guid.matches("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")) {
 
             while(!isPrime(n)){
@@ -14,7 +17,7 @@ public class PrinterI implements Demo.Printer
         } else {
             n=1;
         }
-        System.out.println(n+"");
+        System.out.println("Numero primo mas cercano: "+n);
     }
 
     private boolean isPrime(int n){
@@ -26,5 +29,4 @@ public class PrinterI implements Demo.Printer
         }
         return prime;
     }
-
 }

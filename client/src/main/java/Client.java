@@ -4,7 +4,6 @@ import com.zeroc.Ice.ObjectPrx;
 import com.zeroc.Ice.Util;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.net.Inet4Address;
@@ -30,9 +29,11 @@ public class Client {
                             "Santiago Trochez Velasco - A00369326 \n");
 
                 }else {
-                    int number = validateNumber(args[0]);
 
                     //System.out.println("\u001B[32m"+guid); --> Coloca el texto verde
+
+                    int number =  Integer.parseInt(args[0]);
+
                     if(number > 1){
                         String guid="";
                         if(args.length == 1){
@@ -42,57 +43,41 @@ public class Client {
                             System.out.println(guid);
 
                         }else{
-                            try{
-                                FileReader fr = new FileReader("./"+args[1]);
-                                BufferedReader br = new BufferedReader(fr);
-                                guid = br.readLine();
 
-                                System.out.println(guid);
+                            FileReader fr = new FileReader("./"+args[1]);
+                            BufferedReader br = new BufferedReader(fr);
+                            guid = br.readLine();
 
+                            System.out.println(guid);
 
-                            }catch (FileNotFoundException fne){
-                                System.out.println("El archivo no fue encontrado");
-                            }
                         }
-
 
                         if(!guid.isEmpty()){
 
+                            printer.validateGUID(guid,number);
+
                         }
 
-
-                    } else if (number == 0) {
+                    } else {
                         System.out.println("El numero debe ser mayor a 1");
 
-                    }else{
-                        System.out.println("Debe ingresar un numero como primer parametro");
                     }
+
                 }
 
-            } catch (Exception e) {
+            }catch (FileNotFoundException fne){
+                System.out.println("El archivo no fue encontrado");
+            }
+            catch(NumberFormatException nfe){
+                System.out.println("Debe ingresar un numero como primer parametro");
+            }
+            catch (Exception e) {
                 // TODO: handle exception
+                System.err.println(e);
             }
         }
 
     }
 
-    public static int validateNumber(String number){
-        int validateNUmber = -1;
 
-        try{
-            validateNUmber = Integer.parseInt(number);
-
-            if (validateNUmber > 1){
-                validateNUmber = 2;
-
-            }else{
-                validateNUmber = 0;
-            }
-
-        }catch(NumberFormatException nfe){
-            validateNUmber = -2;
-        }
-
-        return validateNUmber;
-    }
 }
