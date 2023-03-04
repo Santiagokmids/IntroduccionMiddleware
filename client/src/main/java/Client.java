@@ -38,9 +38,7 @@ public class Client {
                         String guid="";
                         if(args.length == 1){
                             guid = UUID.randomUUID().toString();
-                            printer.printString(hostname + " says: " + "Hello World");
-
-                            System.out.println(guid);
+                           // printer.printString(hostname + " says: " + "Hello World");
 
                         }else{
 
@@ -48,14 +46,13 @@ public class Client {
                             BufferedReader br = new BufferedReader(fr);
                             guid = br.readLine();
 
-                            System.out.println(guid);
 
                         }
 
                         if(!guid.isEmpty()){
 
-                            printer.validateGUID(guid,number);
-
+                            int prime=printer.validateGUID(guid,number);
+                            System.out.println(prime+"");
                         }
 
                     } else {
@@ -73,7 +70,7 @@ public class Client {
             }
             catch (Exception e) {
                 // TODO: handle exception
-                System.err.println(e);
+
             }
         }
 

@@ -19,7 +19,7 @@ public interface Printer extends com.zeroc.Ice.Object
 {
     void printString(String s, com.zeroc.Ice.Current current);
 
-    void validateGUID(String guid, int n, com.zeroc.Ice.Current current);
+    int validateGUID(String guid, int n, com.zeroc.Ice.Current current);
 
     /** @hidden */
     static final String[] _iceIds =
@@ -79,8 +79,11 @@ public interface Printer extends com.zeroc.Ice.Object
         iceP_guid = istr.readString();
         iceP_n = istr.readInt();
         inS.endReadParams();
-        obj.validateGUID(iceP_guid, iceP_n, current);
-        return inS.setResult(inS.writeEmptyParams());
+        int ret = obj.validateGUID(iceP_guid, iceP_n, current);
+        com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
+        ostr.writeInt(ret);
+        inS.endWriteParams(ostr);
+        return inS.setResult(ostr);
     }
 
     /** @hidden */

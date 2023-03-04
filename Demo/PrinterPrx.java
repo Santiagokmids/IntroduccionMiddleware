@@ -53,22 +53,22 @@ public interface PrinterPrx extends com.zeroc.Ice.ObjectPrx
         return f;
     }
 
-    default void validateGUID(String guid, int n)
+    default int validateGUID(String guid, int n)
     {
-        validateGUID(guid, n, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+        return validateGUID(guid, n, com.zeroc.Ice.ObjectPrx.noExplicitContext);
     }
 
-    default void validateGUID(String guid, int n, java.util.Map<String, String> context)
+    default int validateGUID(String guid, int n, java.util.Map<String, String> context)
     {
-        _iceI_validateGUIDAsync(guid, n, context, true).waitForResponse();
+        return _iceI_validateGUIDAsync(guid, n, context, true).waitForResponse();
     }
 
-    default java.util.concurrent.CompletableFuture<Void> validateGUIDAsync(String guid, int n)
+    default java.util.concurrent.CompletableFuture<java.lang.Integer> validateGUIDAsync(String guid, int n)
     {
         return _iceI_validateGUIDAsync(guid, n, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
     }
 
-    default java.util.concurrent.CompletableFuture<Void> validateGUIDAsync(String guid, int n, java.util.Map<String, String> context)
+    default java.util.concurrent.CompletableFuture<java.lang.Integer> validateGUIDAsync(String guid, int n, java.util.Map<String, String> context)
     {
         return _iceI_validateGUIDAsync(guid, n, context, false);
     }
@@ -81,13 +81,17 @@ public interface PrinterPrx extends com.zeroc.Ice.ObjectPrx
      * @param sync -
      * @return -
      **/
-    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_validateGUIDAsync(String iceP_guid, int iceP_n, java.util.Map<String, String> context, boolean sync)
+    default com.zeroc.IceInternal.OutgoingAsync<java.lang.Integer> _iceI_validateGUIDAsync(String iceP_guid, int iceP_n, java.util.Map<String, String> context, boolean sync)
     {
-        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "validateGUID", null, sync, null);
-        f.invoke(false, context, null, ostr -> {
+        com.zeroc.IceInternal.OutgoingAsync<java.lang.Integer> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "validateGUID", null, sync, null);
+        f.invoke(true, context, null, ostr -> {
                      ostr.writeString(iceP_guid);
                      ostr.writeInt(iceP_n);
-                 }, null);
+                 }, istr -> {
+                     int ret;
+                     ret = istr.readInt();
+                     return ret;
+                 });
         return f;
     }
 
