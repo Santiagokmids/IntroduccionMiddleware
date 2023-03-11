@@ -10,10 +10,7 @@ public class PrinterI implements Demo.Printer
     public int validateGUID(String guid, int n, Current current) {
         if(guid.matches("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")) {
 
-            n++;
-            while(!isPrime(n)){
-                n++;
-            }
+            n=generatePrime(n);
             System.out.println(ANSI_GREEN+guid+" VALID_REQUEST"+ANSI_RESET);
 
         } else {
@@ -32,5 +29,13 @@ public class PrinterI implements Demo.Printer
             }
         }
         return prime;
+    }
+
+    private int generatePrime(int n){
+        n++;
+        while(!isPrime(n)){
+            n++;
+        }
+        return n;
     }
 }

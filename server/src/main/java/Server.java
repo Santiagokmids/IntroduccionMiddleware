@@ -1,4 +1,4 @@
-import java.net.ConnectException;
+import com.zeroc.Ice.ConnectionRefusedException;
 
 public class Server
 {
@@ -11,6 +11,8 @@ public class Server
             adapter.add(object, com.zeroc.Ice.Util.stringToIdentity("SimplePrinter"));
             adapter.activate();
             communicator.waitForShutdown();
+        }catch (ConnectionRefusedException e){
+            System.out.println("No se pudo establecer la conexion con el cliente");
         }
     }
 }
