@@ -1,11 +1,13 @@
 import Demo.PrinterPrx;
 import com.zeroc.Ice.Communicator;
+import com.zeroc.Ice.ConnectionRefusedException;
 import com.zeroc.Ice.ObjectPrx;
 import com.zeroc.Ice.Util;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.net.ConnectException;
 import java.net.Inet4Address;
 import java.util.UUID;
 
@@ -72,6 +74,8 @@ public class Client {
                 // TODO: handle exception
 
             }
+        }catch (ConnectionRefusedException e){
+            System.out.println("No se pudo establecer la conexion con el servidor");
         }
 
     }

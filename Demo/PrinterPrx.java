@@ -17,42 +17,6 @@ package Demo;
 
 public interface PrinterPrx extends com.zeroc.Ice.ObjectPrx
 {
-    default void printString(String s)
-    {
-        printString(s, com.zeroc.Ice.ObjectPrx.noExplicitContext);
-    }
-
-    default void printString(String s, java.util.Map<String, String> context)
-    {
-        _iceI_printStringAsync(s, context, true).waitForResponse();
-    }
-
-    default java.util.concurrent.CompletableFuture<Void> printStringAsync(String s)
-    {
-        return _iceI_printStringAsync(s, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
-    }
-
-    default java.util.concurrent.CompletableFuture<Void> printStringAsync(String s, java.util.Map<String, String> context)
-    {
-        return _iceI_printStringAsync(s, context, false);
-    }
-
-    /**
-     * @hidden
-     * @param iceP_s -
-     * @param context -
-     * @param sync -
-     * @return -
-     **/
-    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_printStringAsync(String iceP_s, java.util.Map<String, String> context, boolean sync)
-    {
-        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "printString", null, sync, null);
-        f.invoke(false, context, null, ostr -> {
-                     ostr.writeString(iceP_s);
-                 }, null);
-        return f;
-    }
-
     default int validateGUID(String guid, int n)
     {
         return validateGUID(guid, n, com.zeroc.Ice.ObjectPrx.noExplicitContext);

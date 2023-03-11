@@ -5,10 +5,6 @@ public class PrinterI implements Demo.Printer
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_GREEN = "\u001B[32m";
-    public void printString(String s, com.zeroc.Ice.Current current)
-    {
-        System.out.println(s);
-    }
 
     @Override
     public int validateGUID(String guid, int n, Current current) {

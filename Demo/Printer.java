@@ -17,8 +17,6 @@ package Demo;
 
 public interface Printer extends com.zeroc.Ice.Object
 {
-    void printString(String s, com.zeroc.Ice.Current current);
-
     int validateGUID(String guid, int n, com.zeroc.Ice.Current current);
 
     /** @hidden */
@@ -52,24 +50,6 @@ public interface Printer extends com.zeroc.Ice.Object
      * @param current -
      * @return -
     **/
-    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_printString(Printer obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
-    {
-        com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
-        com.zeroc.Ice.InputStream istr = inS.startReadParams();
-        String iceP_s;
-        iceP_s = istr.readString();
-        inS.endReadParams();
-        obj.printString(iceP_s, current);
-        return inS.setResult(inS.writeEmptyParams());
-    }
-
-    /**
-     * @hidden
-     * @param obj -
-     * @param inS -
-     * @param current -
-     * @return -
-    **/
     static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_validateGUID(Printer obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
     {
         com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
@@ -93,7 +73,6 @@ public interface Printer extends com.zeroc.Ice.Object
         "ice_ids",
         "ice_isA",
         "ice_ping",
-        "printString",
         "validateGUID"
     };
 
@@ -127,10 +106,6 @@ public interface Printer extends com.zeroc.Ice.Object
                 return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
             }
             case 4:
-            {
-                return _iceD_printString(this, in, current);
-            }
-            case 5:
             {
                 return _iceD_validateGUID(this, in, current);
             }
